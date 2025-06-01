@@ -1,8 +1,14 @@
 const express = require('express');
+const cors = require('cors');
+const morgan = require('morgan');
 const app = express();
-const { getRandomQuote, getMultipleQuotes } = require('./quotesRepository');
+const { getRandomQuote, getMultipleQuotes, searchQuotes, filterByCharacter, filterByTag } = require('./quotesRepository');
 
 const PORT = process.env.PORT || 3000;
+
+app.use(cors());
+app.use(express.json());
+app.use(morgan('combined'));
 
 app.get('/', (req, res) => {
   res.send("Welcome to TMKOC Quotes API!");
@@ -18,6 +24,21 @@ app.get('/v1/quotes/:count', (req, res) => {
     return res.status(400).json({ error: "Invalid count value" });
   }
   res.json(getMultipleQuotes(count));
+});
+
+app.get('/v1/quotes/character/:author', (req, res) => {
+  const author = req.params.author;
+  res.json(filterByCharacter(author));
+});
+
+app.get('/v1/quotes/tag/:tag', (req, res) => {
+  const tag = req.params.tag;
+  res.json(filterByTag(tag));
+});
+
+app.get('/v1/quotes/search', (req, res) => {
+  const { author, text } = req.query;
+  res.json(searchQuotes({ author, text }));
 });
 
 app.listen(PORT, () => {

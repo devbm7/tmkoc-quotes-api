@@ -41,6 +41,10 @@ app.get('/v1/quotes/search', (req, res) => {
   res.json(searchQuotes({ author, text }));
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}
+
+module.exports = app;

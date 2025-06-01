@@ -14,19 +14,19 @@ describe('TMKOC Quotes API', () => {
   });
 
   it('should return quotes by character', async () => {
-    const res = await request(app).get('/v1/quotes/character/Daya');
+    const res = await request(app).get('/v1/quotes/character/Popatlal');
     expect(res.statusCode).toEqual(200);
     expect(res.body.length).toBeGreaterThan(0);
   });
 
   it('should return quotes by tag', async () => {
-    const res = await request(app).get('/v1/quotes/tag/classic');
+    const res = await request(app).get('/v1/quotes/tag/funny');
     expect(res.statusCode).toEqual(200);
     expect(res.body.length).toBeGreaterThan(0);
   });
 
   it('should search quotes by text', async () => {
-    const res = await request(app).get('/v1/quotes/search?text=paise');
+    const res = await request(app).get('/v1/quotes/search?text=Hey');
     expect(res.statusCode).toEqual(200);
     expect(res.body.length).toBeGreaterThan(0);
   });

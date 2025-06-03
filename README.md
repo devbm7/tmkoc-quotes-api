@@ -50,3 +50,7 @@ If you want to add some quotes, just add them in `quotes.js` file and do a pull 
 ## Credits
 
 Inspired by [Breaking Bad Quotes](https://github.com/shevabam/breaking-bad-quotes).
+
+## License
+
+This project is licensed under the ISC License. See the [LICENSE](https://opensource.org/licenses/ISC) file for details.
